@@ -1,0 +1,83 @@
+{% extends 'fullscreen.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}Sign In {% endblock title %}
+
+{% block content %}
+  <!-- CONTAINER OPEN -->
+  <div class="col col-login mx-auto mt-8">
+    <div class="text-center">
+        <a href="{% url 'record:index' %}"><img src="{% static 'assets/images/icon-dark.png' %}" class="header-brand-img" alt=""></a>
+        <span class="login100-form-title pb-5">
+            Electronic Health Record System
+        </span>
+        
+    </div>
+</div>
+
+<div class="container-login100">
+    <div class="wrap-login100 p-6">
+        <div class="text-center">
+            <h4>Sign in</h4>
+        </div>
+        <form class="login100-form validate-form"  method="post">
+            <div class="login-container">
+           
+        </div>
+            
+             {% csrf_token %}
+             {% include "includes/messages.html" %}
+
+            <div class="panel panel-primary">
+                <div class="panel-body tabs-menu-body p-0 pt-5">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab5">
+                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
+                                </a>
+                                {% render_field form.email autocomplete="off" class="input100 border-start-0 form-control ms-0" type="email" placeholder="Email" %}
+                            </div>
+                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                </a>
+                                {% render_field form.password autocomplete="off" class="input100 border-start-0 form-control ms-0" type="password" placeholder="Password" %}
+                            </div>
+                            <div class="text-end pt-4">
+                                <p class="mb-0"><a href="#" class="text-primary ms-1">Forgot Password?</a></p>
+                            </div>
+                            <div class="container-login100-form-btn">
+                                <button class="login100-form-btn btn-primary" type="submit">
+                                        Sign in
+                                </button>
+                            </div>
+                        
+                            <hr>
+                            <div class="text-center pt-3">
+                                <p class="text-dark mb-0">Don't have an account?</p>
+                                    <ul>
+                                        <li><a href="{% url 'account:register' %}" class="text-primary ms-1">Health Worker</a></li>
+                                        <li><a href="{% url 'account:patient_registration' %}" class="text-primary ms-1">Patient</a></li>
+                                    </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- CONTAINER CLOSED -->
+<script>
+setTimeout(function (){
+    if ($('#msg').length > 0)
+    {$('#msg').remove();
+    }
+}, 3000)
+</script>
+{% endblock content %}

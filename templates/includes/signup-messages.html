@@ -1,0 +1,13 @@
+{% if messages %}
+  <div class="container-fluid p-0">
+    {% for error_dict in messages %}
+      {% for field, error_messages_list in error_dict.items %}
+        {% for error_message in error_messages_list %}
+          <div class="alert alert-danger" id="msg" role="alert">
+            <strong>{{ field.capitalize }} Error:</strong> {{ error_message }}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endif %}

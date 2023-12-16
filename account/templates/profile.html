@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load i18n static %}
+
+
+
+
+
+{% block title %} Profile {% endblock title %}
+
+
+
+{% block content %}
+<div class="main-content app-content mt-0">
+    <div class="side-app">
+
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+
+            <!-- PAGE-HEADER -->
+            <div class="page-header">
+                <h1 class="page-title">Edit Profile</h1>
+                <div>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- PAGE-HEADER END -->
+
+            <!-- ROW-1 OPEN -->
+            <div class="row">
+               
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Profile</h3>
+                        </div>
+                        <form method="post" action="{% url 'account:profile_update' %}">
+                                {% csrf_token %}
+                        <div class="card-body">
+                            {% include "includes/messages.html" %}
+                            
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputname">First Name</label>
+                                        <input type="text" class="form-control" id="exampleInputname" name="first_name" value="{{ request.user.first_name}}"
+                                        required
+                                        readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputname1">Last Name</label>
+                                        <input type="text" class="form-control" id="exampleInputname1" name="last_name"
+                                        value="{{ request.user.last_name}}"
+                                        required
+                                        readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                                value="{{ request.user.email}}"
+                                required
+                                readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputnumber">Contact Number</label>
+                                <input type="tel" class="form-control" id="exampleInputnumber" name="phone_number"
+                                value="{{ request.user.profile.phone_number}}"
+                                required>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <input class="form-control" name="address"
+                                value="{{ request.user.profile.address}}"
+                                required
+                            >
+                            </div>
+                            
+                                </div>
+                            </div>
+                            <div class="card-footer text-end">
+                                <button class="btn btn-success my-1" type="submit">Save</button>
+                                <a href="{% url 'record:profile_update' %}" class="btn btn-danger my-1">Cancel</a>
+                            </div>
+                            
+                        </div>
+                        
+                    </form>
+                    </div>
+                    
+            </div>
+            <!-- ROW-1 CLOSED -->
+
+        </div>
+        <!--CONTAINER CLOSED -->
+
+    </div>
+</div>
+<!--app-content open-->
+{% endblock %}

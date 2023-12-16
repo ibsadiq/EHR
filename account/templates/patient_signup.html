@@ -1,0 +1,99 @@
+
+{% extends 'fullscreen.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}Sign Up {% endblock title %}
+
+{% block content %}
+
+
+                <!-- CONTAINER OPEN -->
+                <div class="col col-login mx-auto mt-7">
+                    <div class="text-center">
+                        <a href="{% url 'record:index' %}"><img src="{% static 'assets/images/icon-dark.png' %}" class="header-brand-img" alt=""></a>
+                        <span class="login100-form-title pb-5">
+                            Electronic Health Record System
+                        </span>
+                        
+                    </div>
+                </div>
+
+                <div class="container-login100">
+                    <div class="wrap-login100 p-5">
+                        <div class="text-center">
+                            <h4>Patient Registration </h4>
+                        </div>
+                        <form class="login100-form validate-form"  method="post" action="{% url 'account:patient_registration' %}">
+                            {% csrf_token %}
+                            {% include "includes/messages.html" %}
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="form-group">
+                                    {% render_field user_form.first_name autocomplete="off" class="form-control" type="text" placeholder="First name"%}
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="form-group">
+                                    {% render_field user_form.last_name autocomplete="off" class="form-control" type="text" placeholder="Last name"%}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="form-group ">
+                                    {% render_field user_form.email autocomplete="off" class="form-control" type="email" placeholder="email"%}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6 mb-0">
+
+                                <div class="form-group ">       
+                                    {% render_field profile_form.phone_number autocomplete="off" class="form-control" type="tel" placeholder="Phone number"%}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            {% render_field profile_form.address autocomplete="off" class="form-control" type="text" placeholder="Address"%}
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="form-group">
+                                    <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                            <i class="zmdi zmdi-eye" aria-hidden="true"></i>
+                                        </a>
+                                        {% render_field user_form.password autocomplete="off" class="form-control" type="password" placeholder="Password"%}
+                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="form-group">
+                                
+                                    <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                            <i class="zmdi zmdi-eye" aria-hidden="true"></i>
+                                        </a>
+                                        {% render_field user_form.password_2 autocomplete="off" class="form-control" type="password" placeholder="Confirm password"%}
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="container-login100-form-btn ">
+                            <button class="login100-form-btn btn-primary" type="submit">
+                                Register
+                        </button>                                                       
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- CONTAINER CLOSED -->
+
+                {% endblock %}
